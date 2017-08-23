@@ -1,0 +1,67 @@
+{
+	"ImportPath": "github.com/dillonhafer/budgetal-go",
+	"GoVersion": "go1.8",
+	"GodepVersion": "v79",
+	"Deps": [
+		{
+			"ImportPath": "github.com/graphql-go/graphql",
+			"Comment": "v0.7.2",
+			"Rev": "105a6c24e6fdaf4008e56d947115a1a13dc46430"
+		},
+		{
+			"ImportPath": "github.com/graphql-go/graphql/gqlerrors",
+			"Comment": "v0.7.2",
+			"Rev": "105a6c24e6fdaf4008e56d947115a1a13dc46430"
+		},
+		{
+			"ImportPath": "github.com/graphql-go/graphql/language/ast",
+			"Comment": "v0.7.2",
+			"Rev": "105a6c24e6fdaf4008e56d947115a1a13dc46430"
+		},
+		{
+			"ImportPath": "github.com/graphql-go/graphql/language/kinds",
+			"Comment": "v0.7.2",
+			"Rev": "105a6c24e6fdaf4008e56d947115a1a13dc46430"
+		},
+		{
+			"ImportPath": "github.com/graphql-go/graphql/language/lexer",
+			"Comment": "v0.7.2",
+			"Rev": "105a6c24e6fdaf4008e56d947115a1a13dc46430"
+		},
+		{
+			"ImportPath": "github.com/graphql-go/graphql/language/location",
+			"Comment": "v0.7.2",
+			"Rev": "105a6c24e6fdaf4008e56d947115a1a13dc46430"
+		},
+		{
+			"ImportPath": "github.com/graphql-go/graphql/language/parser",
+			"Comment": "v0.7.2",
+			"Rev": "105a6c24e6fdaf4008e56d947115a1a13dc46430"
+		},
+		{
+			"ImportPath": "github.com/graphql-go/graphql/language/printer",
+			"Comment": "v0.7.2",
+			"Rev": "105a6c24e6fdaf4008e56d947115a1a13dc46430"
+		},
+		{
+			"ImportPath": "github.com/graphql-go/graphql/language/source",
+			"Comment": "v0.7.2",
+			"Rev": "105a6c24e6fdaf4008e56d947115a1a13dc46430"
+		},
+		{
+			"ImportPath": "github.com/graphql-go/graphql/language/typeInfo",
+			"Comment": "v0.7.2",
+			"Rev": "105a6c24e6fdaf4008e56d947115a1a13dc46430"
+		},
+		{
+			"ImportPath": "github.com/graphql-go/graphql/language/visitor",
+			"Comment": "v0.7.2",
+			"Rev": "105a6c24e6fdaf4008e56d947115a1a13dc46430"
+		},
+		{
+			"ImportPath": "github.com/graphql-go/handler",
+			"Comment": "v0.1.0-4-g37fc9f5",
+			"Rev": "37fc9f5ddd650ee37308740bd5b3b679518605c0"
+		}
+	]
+}
