@@ -11,8 +11,7 @@ Once the repo has been cloned start the dev server:
 $ ./dev.server
 ```
 
-The port can be configured by setting the `PORT` env var
+## Configuration
 
-```
-$ PORT=8080 ./dev.server
-```
+1. `PORT` the listening port can be configured by setting the `PORT` env var
+2. `DATABASE_URL` the database connection can be configured by setting the `DATABASE_URL` env var
