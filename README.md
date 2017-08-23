@@ -10,3 +10,9 @@ Once the repo has been cloned start the dev server:
 ```
 $ ./dev.server
 ```
+
+The port can be configured by setting the `PORT` env var
+
+```
+$ PORT=8080 ./dev.server
+```
