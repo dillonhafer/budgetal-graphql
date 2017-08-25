@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-react2fs -dir="." --exclude="budgetal-go" ./.dev.server.sh
+react2fs --include=".*\.go" ./.dev.server.sh
