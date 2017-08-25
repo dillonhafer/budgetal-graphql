@@ -10,9 +10,14 @@ import (
 	"github.com/jackc/pgx"
 )
 
+const Version = "1.0.0"
+
+var budgetal Budgetal
 var conn *pgx.Conn
 
 func main() {
+	budgetal.extractEnv()
+
 	port := os.Getenv("PORT")
 	if port == "" {
 		port = "3000"
@@ -33,7 +38,7 @@ func main() {
 	schema := NewSchema()
 	handle := handler.New(&handler.Config{
 		Schema: &schema,
-		Pretty: true,
+		Pretty: !budgetal.production(),
 	})
 
 	// serve HTTP
@@ -43,18 +48,9 @@ func main() {
 }
 
 func printStartup(serveAddress string) {
-	println("=> Booting Budgetal")
-	println("=> Application starting in " + budgetalEnv() + " on http://" + serveAddress)
+	println("=> Booting Budgetal [" + Version + "]")
+	println("=> Application starting in " + budgetal.env + " on http://" + serveAddress)
 	println("=> Ctrl-C to shutdown server")
-}
-
-func budgetalEnv() string {
-	budgetal_env := os.Getenv("BUDGETAL_ENV")
-	if budgetal_env == "" {
-		return "development"
-	} else {
-		return budgetal_env
-	}
 }
 
 func extractConfig() pgx.ConnConfig {
