@@ -38,14 +38,23 @@ func main() {
 
 	// serve HTTP
 	printStartup(serveAddress)
-	http.Handle("/", handle)
+	http.Handle("/graphql", handle)
 	http.ListenAndServe(serveAddress, nil)
 }
 
 func printStartup(serveAddress string) {
 	println("=> Booting Budgetal")
-	println("=> Application starting in development on http://" + serveAddress)
+	println("=> Application starting in " + budgetalEnv() + " on http://" + serveAddress)
 	println("=> Ctrl-C to shutdown server")
+}
+
+func budgetalEnv() string {
+	budgetal_env := os.Getenv("BUDGETAL_ENV")
+	if budgetal_env == "" {
+		return "development"
+	} else {
+		return budgetal_env
+	}
 }
 
 func extractConfig() pgx.ConnConfig {
