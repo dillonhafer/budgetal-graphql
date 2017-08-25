@@ -62,6 +62,11 @@
 			"ImportPath": "github.com/graphql-go/handler",
 			"Comment": "v0.1.0-4-g37fc9f5",
 			"Rev": "37fc9f5ddd650ee37308740bd5b3b679518605c0"
+		},
+		{
+			"ImportPath": "github.com/jackc/pgx",
+			"Comment": "v2.10.0-10-gb84338d",
+			"Rev": "b84338d7d62598f75859b2b146d830b22f1b9ec8"
 		}
 	]
 }
