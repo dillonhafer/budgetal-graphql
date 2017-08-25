@@ -18,8 +18,8 @@ func NewSchema() graphql.Schema {
 		"allUsers": &graphql.Field{
 			Type: graphql.String,
 			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
-				listUsers()
-				return "kevin", nil
+				err := listUsers()
+				return "kevin", err
 			},
 		},
 	}
