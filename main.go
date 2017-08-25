@@ -3,12 +3,8 @@ package main
 import (
 	"fmt"
 	"log"
-	"net"
 	"net/http"
-	"net/url"
 	"os"
-	"strconv"
-	"strings"
 
 	"github.com/graphql-go/handler"
 	"github.com/jackc/pgx"
@@ -21,6 +17,11 @@ func main() {
 	if port == "" {
 		port = "3000"
 	}
+	bindAddress := os.Getenv("BIND_ADDRESS")
+	if bindAddress == "" {
+		bindAddress = "127.0.0.1"
+	}
+	serveAddress := bindAddress + ":" + port
 
 	var err error
 	conn, err = pgx.Connect(extractConfig())
@@ -36,8 +37,15 @@ func main() {
 	})
 
 	// serve HTTP
+	printStartup(serveAddress)
 	http.Handle("/", handle)
-	http.ListenAndServe("127.0.0.1:"+port, nil)
+	http.ListenAndServe(serveAddress, nil)
+}
+
+func printStartup(serveAddress string) {
+	println("=> Booting Budgetal")
+	println("=> Application starting in development on http://" + serveAddress)
+	println("=> Ctrl-C to shutdown server")
 }
 
 func extractConfig() pgx.ConnConfig {
@@ -47,30 +55,10 @@ func extractConfig() pgx.ConnConfig {
 		database_url = "postgres://" + os.Getenv("USER") + "@localhost:5432/budgetal_development"
 	}
 
-	url, err := url.Parse(database_url)
+	config, err := pgx.ParseConnectionString(database_url)
 	if err != nil {
 		log.Fatalf("failed to parse DATABASE_URL, error: %v", err)
 	}
-
-	if url.Scheme != "postgres" {
-		log.Fatalf("DATABASE_URL scheme must be postgres://")
-	}
-
-	database := strings.Replace(url.RequestURI(), "/", "", -1)
-	host, port_string, _ := net.SplitHostPort(url.Host)
-	port, err := strconv.ParseInt(port_string, 10, 16)
-	if err != nil {
-		log.Fatalf("failed to parse database port, error: %v", err)
-	}
-
-	user := url.User.Username()
-	password, _ := url.User.Password()
-
-	config.Host = host
-	config.Port = uint16(port)
-	config.Database = database
-	config.User = user
-	config.Password = password
 
 	return config
 }

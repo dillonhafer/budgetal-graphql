@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/graphql-go/graphql"
@@ -14,6 +15,13 @@ func NewSchema() graphql.Schema {
 				return "kevin", nil
 			},
 		},
+		"allUsers": &graphql.Field{
+			Type: graphql.String,
+			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+				listUsers()
+				return "kevin", nil
+			},
+		},
 	}
 	rootQuery := graphql.ObjectConfig{Name: "RootQuery", Fields: fields}
 	schemaConfig := graphql.SchemaConfig{Query: graphql.NewObject(rootQuery)}
@@ -23,4 +31,20 @@ func NewSchema() graphql.Schema {
 	}
 
 	return schema
+}
+
+func listUsers() error {
+	rows, _ := conn.Query("select email, first_name from users")
+
+	for rows.Next() {
+		var email string
+		var first_name string
+		err := rows.Scan(&email, &first_name)
+		if err != nil {
+			return err
+		}
+		fmt.Printf("%s. %s\n", email, first_name)
+	}
+
+	return rows.Err()
 }
